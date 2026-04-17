@@ -1,0 +1,345 @@
+/* ============================================================
+   DUNE DOMINION — Catálogo de Ítems
+   Design: Desert Brutalism meets Sci-Fi Codex
+   Palette: Sand Black + Spice Gold + Rust Orange
+   Fonts: Cinzel (titles) + Space Mono (data) + Crimson Pro (body)
+   ============================================================ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom Dune tokens */
+  --color-spice: #c8860a;
+  --color-spice-bright: #f0a500;
+  --color-sand: #e8d5a3;
+  --color-rust: #8b4513;
+  --color-ember: #ff4500;
+  --color-void: #0d0a06;
+  --color-earth: #1a1208;
+  --color-stone: #2a1f10;
+  --color-dust: #7a6a4f;
+  --font-cinzel: 'Cinzel', serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-body: 'Crimson Pro', serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.09 0.018 60);
+  --foreground: oklch(0.88 0.035 75);
+  --card: oklch(0.12 0.022 58);
+  --card-foreground: oklch(0.88 0.035 75);
+  --popover: oklch(0.14 0.022 58);
+  --popover-foreground: oklch(0.88 0.035 75);
+  --primary: oklch(0.65 0.14 65);
+  --primary-foreground: oklch(0.09 0.018 60);
+  --secondary: oklch(0.18 0.025 58);
+  --secondary-foreground: oklch(0.75 0.03 70);
+  --muted: oklch(0.16 0.02 58);
+  --muted-foreground: oklch(0.55 0.025 65);
+  --accent: oklch(0.22 0.04 60);
+  --accent-foreground: oklch(0.88 0.035 75);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.25 0.04 58);
+  --input: oklch(0.18 0.025 58);
+  --ring: oklch(0.65 0.14 65);
+  --chart-1: oklch(0.65 0.14 65);
+  --chart-2: oklch(0.55 0.18 40);
+  --chart-3: oklch(0.45 0.12 80);
+  --chart-4: oklch(0.7 0.1 90);
+  --chart-5: oklch(0.5 0.2 30);
+  --sidebar: oklch(0.11 0.02 58);
+  --sidebar-foreground: oklch(0.88 0.035 75);
+  --sidebar-primary: oklch(0.65 0.14 65);
+  --sidebar-primary-foreground: oklch(0.09 0.018 60);
+  --sidebar-accent: oklch(0.18 0.025 58);
+  --sidebar-accent-foreground: oklch(0.88 0.035 75);
+  --sidebar-border: oklch(0.22 0.035 58);
+  --sidebar-ring: oklch(0.65 0.14 65);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(ellipse at 20% 50%, oklch(0.15 0.03 60 / 0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, oklch(0.12 0.025 55 / 0.3) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-cinzel);
+  }
+  code, pre, .mono {
+    font-family: var(--font-mono);
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1400px;
+    }
+  }
+
+  /* Dune-specific components */
+  .dune-card {
+    background: oklch(0.12 0.022 58);
+    border: 1px solid oklch(0.28 0.05 62);
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .dune-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    background: linear-gradient(135deg, oklch(0.65 0.14 65 / 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .dune-card:hover {
+    border-color: oklch(0.65 0.14 65 / 0.7);
+    box-shadow: 0 0 20px oklch(0.65 0.14 65 / 0.15), 0 8px 32px oklch(0 0 0 / 0.5);
+    transform: translateY(-2px);
+  }
+
+  .dune-card-legendary {
+    border-color: oklch(0.65 0.14 65 / 0.6);
+    background: oklch(0.14 0.03 62);
+  }
+
+  .dune-card-legendary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, oklch(0.65 0.14 65), transparent);
+  }
+
+  .dune-card-epic {
+    border-color: oklch(0.55 0.18 40 / 0.5);
+    background: oklch(0.13 0.025 55);
+  }
+
+  .dune-card-rare {
+    border-color: oklch(0.5 0.12 250 / 0.4);
+    background: oklch(0.12 0.022 58);
+  }
+
+  .stat-bar {
+    height: 6px;
+    background: oklch(0.18 0.025 58);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .stat-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, oklch(0.55 0.12 60), oklch(0.65 0.14 65));
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .badge-rareza {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+  }
+
+  .badge-legendary {
+    background: oklch(0.65 0.14 65 / 0.2);
+    color: oklch(0.75 0.14 65);
+    border: 1px solid oklch(0.65 0.14 65 / 0.5);
+  }
+
+  .badge-epic {
+    background: oklch(0.55 0.18 40 / 0.2);
+    color: oklch(0.7 0.15 40);
+    border: 1px solid oklch(0.55 0.18 40 / 0.4);
+  }
+
+  .badge-rare {
+    background: oklch(0.5 0.12 250 / 0.2);
+    color: oklch(0.65 0.12 250);
+    border: 1px solid oklch(0.5 0.12 250 / 0.4);
+  }
+
+  .badge-common {
+    background: oklch(0.35 0.02 60 / 0.3);
+    color: oklch(0.6 0.02 60);
+    border: 1px solid oklch(0.35 0.02 60 / 0.5);
+  }
+
+  .pixel-image-wrapper {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .scan-lines {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-lines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0 0 0 / 0.08) 2px,
+      oklch(0 0 0 / 0.08) 4px
+    );
+    pointer-events: none;
+  }
+
+  .dune-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.65 0.14 65 / 0.4), transparent);
+    margin: 1rem 0;
+  }
+
+  .filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid oklch(0.28 0.05 62);
+    background: transparent;
+    color: oklch(0.55 0.025 65);
+    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    border-color: oklch(0.65 0.14 65 / 0.7);
+    color: oklch(0.75 0.14 65);
+    background: oklch(0.65 0.14 65 / 0.1);
+  }
+
+  .modal-overlay {
+    background: oklch(0 0 0 / 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px oklch(0.65 0.14 65 / 0.5);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  .shimmer-text {
+    background: linear-gradient(90deg, oklch(0.65 0.14 65), oklch(0.8 0.1 75), oklch(0.65 0.14 65));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+}
